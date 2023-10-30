@@ -7,14 +7,16 @@ import Dashboard from './Dashboard'
 import Register from './register';
 import { Route, Routes, useNavigate } from "react-router-dom";
 
+
 function App() {
   // Source: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
   const [currentUser, setCurrentUser] = useState(localStorage.getItem("user"));
   const [isLoggedIn, setIsLoggedIn] = useState(!!currentUser);
   const navigate = useNavigate();
+  const [token, setToken] = useState(); // Source to try: https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications
 
-  // Ensure local AWS config file has the latest key (currently from APIkey.js - in .gitignore)
-  // TODO: Find a secure way to manage the key
+  // Ensure local AWS config file has the latest key (currently from APIkey.js)
+  // TODO: Find a secure way to store the key (maybe AWS)
   AWS.config.update({
     accessKeyId: AWS_ACCESS_KEY_ID,
     secretAccessKey: AWS_SECRET_ACCESS_KEY,
@@ -44,3 +46,5 @@ function App() {
 }
 
 export default App;
+
+// AWS API: https://medium.com/serverlessguru/serverless-api-with-reactjs-6fa297ac8a27
